@@ -1,27 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lab4/model/termin_polaganje.dart';
 import 'widgets/addForma.dart';
+import 'widgets/login.dart';
 import 'widgets/calendar.dart';
- 
-
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hristijan Stojanov 191257',
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          accentColor: Colors.red,
-          textTheme: ThemeData.light().textTheme.copyWith()),
-      home: App(),
-    );
-  }
-}
 
 class App extends StatefulWidget {
   @override
@@ -29,19 +10,14 @@ class App extends StatefulWidget {
 }
 
 class _PageState extends State<App> {
-  final List<Termin> _items = [];
+   final List<Termin> _items = [];
+
+  late final String najevenKorisnik;
+
+
   List<Termin> getList(){
     return _items;
   }
-
-
-
-
-
-
-
-
-
 
   void _addItem(BuildContext cont) {
     showModalBottomSheet(
@@ -64,6 +40,7 @@ class _PageState extends State<App> {
         });
   }
 
+
   void _addNew(Termin item) {
     setState(() {
       _items.add(item);
@@ -74,7 +51,7 @@ class _PageState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Lab3"), actions: <Widget>[
+      appBar: AppBar(title: Text("Lab4"), actions: <Widget>[
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () => _addItem(context),
@@ -83,6 +60,7 @@ class _PageState extends State<App> {
           icon: Icon(Icons.calendar_view_week_sharp),
           onPressed: () => _openCalendar(context),
         ),
+
       ]),
       body: Center(
         child: _items.isEmpty
@@ -113,3 +91,27 @@ class _PageState extends State<App> {
     );
   }
 }
+
+
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const appTitle = 'Log in';
+    return MaterialApp(
+      title: appTitle,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(appTitle),
+        ),
+        body:  Loginform(),
+      ),
+    );
+  }
+}
+
+
